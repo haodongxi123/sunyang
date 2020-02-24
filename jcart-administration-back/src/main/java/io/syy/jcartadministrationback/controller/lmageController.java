@@ -12,7 +12,7 @@ public class lmageController {
 
     @PostMapping("/upload")
     public  String update(@RequestParam MultipartFile image){
-            
+
         return "";
     }
 }
