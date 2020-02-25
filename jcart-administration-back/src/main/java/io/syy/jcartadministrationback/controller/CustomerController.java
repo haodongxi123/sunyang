@@ -22,7 +22,7 @@ public class CustomerController {
 
         @PostMapping("/disable")
         public  void disable(@RequestParam Integer customerId){
-            
+
         }
 
 }
