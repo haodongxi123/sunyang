@@ -30,6 +30,8 @@ public class OrderController {
     }
 
     @GetMapping("/getShipInfo")
-    public OrderShowOutDTO getShipInfo(@RequestParam Long orderId)【
-    return null;
+    public OrderShowOutDTO getShipInfo(@RequestParam Long orderId){
+        return null;
+    }
+
 }
