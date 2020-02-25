@@ -52,6 +52,6 @@ public class Administrator {
 
         @PostMapping("/update")
         public  void update(@RequestBody AdministratorUpdateInDTO administratorUpdateInDTO){
-            
+
         }
 }
