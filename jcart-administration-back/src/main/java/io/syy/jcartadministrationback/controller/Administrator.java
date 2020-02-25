@@ -14,12 +14,12 @@ public class Administrator {
         }
 
         @GetMapping("/getProfile")
-        public  AdministratorLogInDTO getProfile(Integer adminstratorId){
+        public  AdministratorLogInDTO getProfile(@RequestParam(required = false) Integer adminstratorId){
             return null;
         }
 
-        @PostMapping("/updateProdfile")
-         public void updateProdfile(@RequestBody AdministratorUpdateProfileInDTO administratorUpdateProfileInDTO){
+        @PostMapping("/updateProfile")
+         public void updateProfile(@RequestBody AdministratorUpdateProfileInDTO administratorUpdateProfileInDTO){
 
         }
 
