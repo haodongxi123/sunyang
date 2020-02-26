@@ -1,8 +1,8 @@
 package io.syy.jcartstoreback.dto.in;
 
 public class CustomerChangePwdInDTO {
-    private  String originPwd;
-    private  String newPwd;
+    private String originPwd;
+    private String newPwd;
 
     public String getOriginPwd() {
         return originPwd;

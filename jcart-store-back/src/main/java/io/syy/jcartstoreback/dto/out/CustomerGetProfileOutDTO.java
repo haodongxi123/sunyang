@@ -1,13 +1,13 @@
 package io.syy.jcartstoreback.dto.out;
 
 public class CustomerGetProfileOutDTO {
-    private  Integer customerId;
-    private  String username;
-    private  String realName;
-    private  String mobile;
-    private  Boolean mobileVerified;
-    private  String email;
-    private  Boolean emailVerified;
+    private Integer customerId;
+    private String username;
+    private String realName;
+    private String mobile;
+    private Boolean mobileVerified;
+    private String email;
+    private Boolean emailVerified;
 
     public Integer getCustomerId() {
         return customerId;

@@ -1,8 +1,8 @@
 package io.syy.jcartstoreback.dto.in;
 
 public class CustomerLoginInDTO {
-    private  String username;
-    private  String password;
+    private String username;
+    private String password;
 
     public String getUsername() {
         return username;

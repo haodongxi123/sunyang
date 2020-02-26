@@ -1,10 +1,10 @@
 package io.syy.jcartstoreback.dto.in;
 
-public class AddresUpdateInDTO {
-    private  String receiverName;
-    private  String receiverMobile;
-    private  String content;
-    private  String tag;
+public class AddressUpdateInDTO {
+    private String receiverName;
+    private String receiverMobile;
+    private String content;
+    private String tag;
 
     public String getReceiverName() {
         return receiverName;

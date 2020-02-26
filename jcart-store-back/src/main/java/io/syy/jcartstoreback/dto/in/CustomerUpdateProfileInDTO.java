@@ -1,17 +1,16 @@
 package io.syy.jcartstoreback.dto.in;
 
 public class CustomerUpdateProfileInDTO {
+    private String realName;
+    private String mobile;
+    private String email;
 
-    private  String realBName;
-    private  String mobile;
-    private  String email;
-
-    public String getRealBName() {
-        return realBName;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealBName(String realBName) {
-        this.realBName = realBName;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getMobile() {
@@ -30,4 +29,3 @@ public class CustomerUpdateProfileInDTO {
         this.email = email;
     }
 }
-

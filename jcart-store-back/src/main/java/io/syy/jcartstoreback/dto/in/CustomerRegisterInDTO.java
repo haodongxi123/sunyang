@@ -1,12 +1,12 @@
 package io.syy.jcartstoreback.dto.in;
 
 public class CustomerRegisterInDTO {
-    private  String username;
-    private  String realName;
-    private  String email;
-    private  String mobile;
-    private  String password;
-    private  Boolean newSubscribed;
+    private String username;
+    private String realName;
+    private String email;
+    private String mobile;
+    private String password;
+    private Boolean newsSubscribed;
 
     public String getUsername() {
         return username;
@@ -48,11 +48,11 @@ public class CustomerRegisterInDTO {
         this.password = password;
     }
 
-    public Boolean getNewSubscribed() {
-        return newSubscribed;
+    public Boolean getNewsSubscribed() {
+        return newsSubscribed;
     }
 
-    public void setNewSubscribed(Boolean newSubscribed) {
-        this.newSubscribed = newSubscribed;
+    public void setNewsSubscribed(Boolean newsSubscribed) {
+        this.newsSubscribed = newsSubscribed;
     }
 }

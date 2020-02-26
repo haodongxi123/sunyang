@@ -1,9 +1,9 @@
 package io.syy.jcartstoreback.dto.in;
 
 public class CustomerResetPwdInDTO {
-    private  String email;
-    private  String resetCode;
-    private  String newPwd;
+    private String email;
+    private String resetCode;
+    private String newPwd;
 
     public String getEmail() {
         return email;
