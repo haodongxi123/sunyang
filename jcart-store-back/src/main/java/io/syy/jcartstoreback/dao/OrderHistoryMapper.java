@@ -1,6 +1,6 @@
 package io.syy.jcartstoreback.dao;
 
-import io.cjf.jcartstoreback.po.OrderHistory;
+import io.syy.jcartstoreback.po.OrderHistory;
 
 public interface OrderHistoryMapper {
     int deleteByPrimaryKey(Long orderHistoryId);

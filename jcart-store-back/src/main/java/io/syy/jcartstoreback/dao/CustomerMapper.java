@@ -1,6 +1,6 @@
 package io.syy.jcartstoreback.dao;
 
-import io.cjf.jcartstoreback.po.Customer;
+import io.syy.jcartstoreback.po.Customer;
 
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer customerId);
