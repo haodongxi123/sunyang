@@ -7,6 +7,7 @@ var app = new Vue({
     mounted() {
         console.log('view mounted');
         this.searchProduct();
+        
     },
     methods: {
         handlePageChange(val){

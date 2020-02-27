@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/image")
+@CrossOrigin
 public class lmageController {
 
     private List<String> imageExts= Arrays.asList("jpg","jpeg","png");
