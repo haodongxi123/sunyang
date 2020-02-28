@@ -1,6 +1,7 @@
 package io.syy.jcartstoreback.dao;
 
 import io.syy.jcartstoreback.po.Customer;
+import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer customerId);
@@ -14,4 +15,6 @@ public interface CustomerMapper {
     int updateByPrimaryKeySelective(Customer record);
 
     int updateByPrimaryKey(Customer record);
+
+    Customer selectByUsername(@Param("username") String username);
 }
