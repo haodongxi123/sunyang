@@ -1,9 +1,15 @@
 package io.syy.jcartadministrationback.controller;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import io.syy.jcartadministrationback.constant.ClientExceptionConstant;
 import io.syy.jcartadministrationback.dto.in.*;
 import io.syy.jcartadministrationback.dto.out.AdministratorListOutDTO;
+import io.syy.jcartadministrationback.dto.out.AdministratorLoginOutDTO;
 import io.syy.jcartadministrationback.dto.out.AdministratorShowOutDTO;
 import io.syy.jcartadministrationback.dto.out.PageOutDTO;
+import io.syy.jcartadministrationback.exception.ClientException;
+import io.syy.jcartadministrationback.service.AdministratorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,10 +17,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/administrator")
 public class Administrator {
+        @Autowired
+        private AdministratorService administratorService;
+
+        @Autowired
+        private JWTUtil jwtUtil;
 
         @GetMapping("/login")
-        public  String login(AdministratorLogInDTO administratorLogInDTO){
-            return null;
+        public  String login(AdministratorLogInDTO administratorLogInDTO) throws ClientException {
+                Administrator administrator = administratorService.getByUsername(administratorLoginInDTO.getUsername());
+                if (administrator == null){
+                        throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
+                }
+                String encPwdDB = administrator.getEncryptedPassword();
+                BCrypt.Result result = BCrypt.verifyer().verify(administratorLoginInDTO.getPassword().toCharArray(), encPwdDB);
+
+                if (result.verified) {
+                        AdministratorLoginOutDTO administratorLoginOutDTO = jwtUtil.issueToken(administrator);
+                        return administratorLoginOutDTO;
+                }else {
+                        throw new ClientException(ClientExceptionConstant.ADNINISTRATOR_PASSWORD_INVALID_ERRCODE, ClientExceptionConstant.ADNINISTRATOR_PASSWORD_INVALID_ERRMSG);
+                }
         }
 
         @GetMapping("/getProfile")

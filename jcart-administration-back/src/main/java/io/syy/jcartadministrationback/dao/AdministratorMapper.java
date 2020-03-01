@@ -1,7 +1,11 @@
 package io.syy.jcartadministrationback.dao;
 
 import io.syy.jcartadministrationback.po.Administrator;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@Repository
 public interface AdministratorMapper {
     int deleteByPrimaryKey(Integer administratorId);
 
@@ -14,4 +18,7 @@ public interface AdministratorMapper {
     int updateByPrimaryKeySelective(Administrator record);
 
     int updateByPrimaryKey(Administrator record);
+
+    //自己写
+    Administrator selectByUsername(@Param("username") String username);
 }
