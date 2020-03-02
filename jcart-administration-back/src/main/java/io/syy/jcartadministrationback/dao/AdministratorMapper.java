@@ -3,7 +3,6 @@ package io.syy.jcartadministrationback.dao;
 import io.syy.jcartadministrationback.po.Administrator;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface AdministratorMapper {

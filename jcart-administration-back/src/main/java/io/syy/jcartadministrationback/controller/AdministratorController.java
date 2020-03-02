@@ -5,6 +5,7 @@ import io.syy.jcartadministrationback.constant.ClientExceptionConstant;
 import io.syy.jcartadministrationback.dto.in.*;
 import io.syy.jcartadministrationback.dto.out.*;
 import io.syy.jcartadministrationback.exception.ClientException;
+import io.syy.jcartadministrationback.po.Administrator;
 import io.syy.jcartadministrationback.service.AdministratorService;
 import io.syy.jcartadministrationback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/administrator")
-public class Administrator {
+public class AdministratorController {
+
         @Autowired
         private AdministratorService administratorService;
 
@@ -23,7 +25,7 @@ public class Administrator {
 
         @GetMapping("/login")
         public AdministratorLoginOutDTO login(AdministratorLogInDTO administratorLoginInDTO) throws ClientException {
-                io.syy.jcartadministrationback.po.Administrator administrator = administratorService.getByUsername(administratorLoginInDTO.getUsername());
+                Administrator administrator = administratorService.getByUsername(administratorLoginInDTO.getUsername());
                 if (administrator == null){
                         throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
                 }
@@ -40,7 +42,7 @@ public class Administrator {
 
         @GetMapping("/getProfile")
         public AdministratorGetProfileOutDTO getProfile(@RequestAttribute Integer administratorId){
-                io.syy.jcartadministrationback.po.Administrator administrator = administratorService.getById(administratorId);
+                Administrator administrator = administratorService.getById(administratorId);
                 AdministratorGetProfileOutDTO administratorGetProfileOutDTO = new AdministratorGetProfileOutDTO();
                 administratorGetProfileOutDTO.setAdministratorId(administrator.getAdministratorId());
                 administratorGetProfileOutDTO.setUsername(administrator.getUsername());
@@ -53,37 +55,50 @@ public class Administrator {
         }
 
         @PostMapping("/updateProfile")
-         public void updateProfile(@RequestBody AdministratorUpdateProfileInDTO administratorUpdateProfileInDTO){
+        public void updateProfile(@RequestBody AdministratorUpdateProfileInDTO administratorUpdateProfileInDTO,
+                                  @RequestAttribute Integer administratorId){
+                Administrator administrator = new Administrator();
+                administrator.setAdministratorId(administratorId);
+                administrator.setRealName(administratorUpdateProfileInDTO.getRealName());
+                administrator.setEmail(administratorUpdateProfileInDTO.getEmail());
+                administrator.setAvatarUrl(administratorUpdateProfileInDTO.getAvatarUrl());
+                administratorService.update(administrator);
 
         }
 
-        @GetMapping("/getpwdResetCode")
-        public  String getpwdResetCode(@RequestParam String email){
-            return null;
+        @PostMapping("/changePwd")
+        public void changePwd(@RequestBody AdministratorChangePwdInDTO administratorChangePwdInDTO,
+                              @RequestAttribute Integer administratorId){
+
+        }
+
+        @GetMapping("/getPwdResetCode")
+        public String getPwdResetCode(@RequestParam String email){
+                return null;
         }
 
         @PostMapping("/resetPwd")
-        public  void resetPwd(@RequestBody AdministratorResetPwdInDTO administratorResetPwdInDTO){
+        public void resetPwd(@RequestBody AdministratorResetPwdInDTO administratorResetPwdInDTO){
 
         }
 
         @GetMapping("/getList")
         public PageOutDTO<AdministratorListOutDTO> getList(@RequestParam Integer pageNum){
-            return  null;
+                return null;
         }
 
         @GetMapping("/getById")
         public AdministratorShowOutDTO getById(@RequestParam Integer administratorId){
-            return null;
+                return null;
         }
 
         @PostMapping("/create")
-        public  Integer create(@RequestBody AdministratorCreateInDTO administratorCreateInDTO){
-            return null;
+        public Integer create(@RequestBody AdministratorCreateInDTO administratorCreateInDTO){
+                return null;
         }
 
         @PostMapping("/update")
-        public  void update(@RequestBody AdministratorUpdateInDTO administratorUpdateInDTO){
+        public void update(@RequestBody AdministratorUpdateInDTO administratorUpdateInDTO){
 
         }
 
@@ -93,7 +108,8 @@ public class Administrator {
         }
 
         @PostMapping("/batchDelete")
-        public  void batchDelete(@RequestBody List<Integer> administratorIds){
+        public void batchDelete(@RequestBody List<Integer> administratorIds){
 
         }
+
 }
