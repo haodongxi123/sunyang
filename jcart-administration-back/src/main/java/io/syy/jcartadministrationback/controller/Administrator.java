@@ -9,6 +9,7 @@ import io.syy.jcartadministrationback.dto.out.AdministratorShowOutDTO;
 import io.syy.jcartadministrationback.dto.out.PageOutDTO;
 import io.syy.jcartadministrationback.exception.ClientException;
 import io.syy.jcartadministrationback.service.AdministratorService;
+import io.syy.jcartadministrationback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,8 @@ public class Administrator {
         private JWTUtil jwtUtil;
 
         @GetMapping("/login")
-        public  String login(AdministratorLogInDTO administratorLogInDTO) throws ClientException {
-                Administrator administrator = administratorService.getByUsername(administratorLoginInDTO.getUsername());
+        public AdministratorLoginOutDTO login(AdministratorLogInDTO administratorLoginInDTO) throws ClientException {
+                io.syy.jcartadministrationback.po.Administrator administrator = administratorService.getByUsername(administratorLoginInDTO.getUsername());
                 if (administrator == null){
                         throw new ClientException(ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRCODE, ClientExceptionConstant.ADMINISTRATOR_USERNAME_NOT_EXIST_ERRMSG);
                 }
