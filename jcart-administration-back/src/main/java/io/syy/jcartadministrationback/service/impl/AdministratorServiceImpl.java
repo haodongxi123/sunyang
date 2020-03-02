@@ -1,5 +1,7 @@
 package io.syy.jcartadministrationback.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import io.syy.jcartadministrationback.dao.AdministratorMapper;
 import io.syy.jcartadministrationback.po.Administrator;
 import io.syy.jcartadministrationback.service.AdministratorService;
@@ -47,5 +49,12 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     public void batchDelete(List<Integer> administratorIds) {
         administratorMapper.batchDelete(administratorIds);
+    }
+
+    @Override
+    public Page<Administrator> getList(Integer pageNum) {
+        PageHelper.startPage(pageNum, 10);
+        Page<Administrator> page = administratorMapper.selectList();
+        return page;
     }
 }

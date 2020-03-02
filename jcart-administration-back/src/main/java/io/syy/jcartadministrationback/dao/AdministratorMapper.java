@@ -26,5 +26,5 @@ public interface AdministratorMapper {
     //批删
     int batchDelete(@Param("administratorIds")List<Integer> administratorIds);
 
-    Page<Administrator> getList();
+    Page<Administrator> selectList();
 }

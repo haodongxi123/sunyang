@@ -1,6 +1,7 @@
 package io.syy.jcartadministrationback.controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.github.pagehelper.Page;
 import io.syy.jcartadministrationback.constant.ClientExceptionConstant;
 import io.syy.jcartadministrationback.dto.in.*;
 import io.syy.jcartadministrationback.dto.out.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/administrator")
@@ -87,9 +89,25 @@ public class AdministratorController {
         }
 
         @GetMapping("/getList")
-        public PageOutDTO<AdministratorListOutDTO> getList(@RequestParam Integer pageNum){
+        public PageOutDTO<AdministratorListOutDTO> getList(@RequestParam(required = false, defaultValue = "1") Integer pageNum){
+                Page<Administrator> page = administratorService.getList(pageNum);
+                List<AdministratorListOutDTO> administratorListOutDTOS = page.stream().map(administrator -> {
+                        AdministratorListOutDTO administratorListOutDTO = new AdministratorListOutDTO();
+                        administratorListOutDTO.setAdministratorId(administrator.getAdministratorId());
+                        administratorListOutDTO.setUsername(administrator.getUsername());
 
-                return null;
+                        administratorListOutDTO.setStatus(administrator.getStatus());
+                        administratorListOutDTO.setCreateTimestamp(administrator.getCreateTime().getTime());
+                        return administratorListOutDTO;
+                }).collect(Collectors.toList());
+
+                PageOutDTO<AdministratorListOutDTO> pageOutDTO = new PageOutDTO<>();
+                pageOutDTO.setTotal(page.getTotal());
+                pageOutDTO.setPageSize(page.getPageSize());
+                pageOutDTO.setPageNum(page.getPageNum());
+                pageOutDTO.setList(administratorListOutDTOS);
+
+                return pageOutDTO;
         }
 
         @GetMapping("/getById")
@@ -131,7 +149,7 @@ public class AdministratorController {
                 administrator.setAdministratorId(administratorUpdateInDTO.getAdministratorId());
                 administrator.setRealName(administratorUpdateInDTO.getRealName());
                 administrator.setEmail(administratorUpdateInDTO.getEmail());
-
+                administrator.setAvatarUrl(administratorUpdateInDTO.getAvatarUrl());
                 administrator.setStatus(administratorUpdateInDTO.getStatus());
                 String password = administratorUpdateInDTO.getPassword();
                 if (password != null && !password.isEmpty()){
