@@ -3,10 +3,7 @@ package io.syy.jcartadministrationback.controller;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.syy.jcartadministrationback.constant.ClientExceptionConstant;
 import io.syy.jcartadministrationback.dto.in.*;
-import io.syy.jcartadministrationback.dto.out.AdministratorListOutDTO;
-import io.syy.jcartadministrationback.dto.out.AdministratorLoginOutDTO;
-import io.syy.jcartadministrationback.dto.out.AdministratorShowOutDTO;
-import io.syy.jcartadministrationback.dto.out.PageOutDTO;
+import io.syy.jcartadministrationback.dto.out.*;
 import io.syy.jcartadministrationback.exception.ClientException;
 import io.syy.jcartadministrationback.service.AdministratorService;
 import io.syy.jcartadministrationback.util.JWTUtil;
@@ -42,8 +39,17 @@ public class Administrator {
         }
 
         @GetMapping("/getProfile")
-        public  AdministratorLogInDTO getProfile(@RequestParam(required = false) Integer adminstratorId){
-            return null;
+        public AdministratorGetProfileOutDTO getProfile(@RequestAttribute Integer administratorId){
+                io.syy.jcartadministrationback.po.Administrator administrator = administratorService.getById(administratorId);
+                AdministratorGetProfileOutDTO administratorGetProfileOutDTO = new AdministratorGetProfileOutDTO();
+                administratorGetProfileOutDTO.setAdministratorId(administrator.getAdministratorId());
+                administratorGetProfileOutDTO.setUsername(administrator.getUsername());
+                administratorGetProfileOutDTO.setRealName(administrator.getRealName());
+                administratorGetProfileOutDTO.setEmail(administrator.getEmail());
+                administratorGetProfileOutDTO.setAvatarUrl(administrator.getAvatarUrl());
+                administratorGetProfileOutDTO.setCreateTimestamp(administrator.getCreateTime().getTime());
+
+                return administratorGetProfileOutDTO;
         }
 
         @PostMapping("/updateProfile")
