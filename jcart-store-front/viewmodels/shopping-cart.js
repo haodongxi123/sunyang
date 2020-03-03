@@ -1,18 +1,19 @@
 var app = new Vue({
     el: '#app',
     data: {
-        myShoppingCartJson: []
+        myShoppingCart: []
     },
-    mounted(){
+    mounted() {
         console.log('view mounted');
         var myShoppingCartJson = localStorage['myShoppingCartJson'];
-        this.myShoppingCartJson = JSON.parse(myShoppingCartJson);
+        this.myShoppingCart = myShoppingCartJson ? JSON.parse(myShoppingCartJson) : [];
     },
     methods: {
-        handleDelete(index,row){
+        handleDelete(index, row) {
             console.log('delete click');
-            this.myShoppingCartJson.splice(index,1);
-            localStorage['myShoppingCartJson'] = JSON.stringify(this.myShoppingCartJson);
+            this.myShoppingCart.splice(index, 1);
+            localStorage['myShoppingCartJson'] = JSON.stringify(this.myShoppingCart);
+            this.$message.success('删除购物车成功');
         },
         handleUpdate(index, row) {
             console.log('update click');
