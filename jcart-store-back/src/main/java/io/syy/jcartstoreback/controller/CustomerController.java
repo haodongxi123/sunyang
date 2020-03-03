@@ -10,7 +10,14 @@ import io.syy.jcartstoreback.po.Customer;
 import io.syy.jcartstoreback.service.CustomerService;
 import io.syy.jcartstoreback.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.bind.DatatypeConverter;
+import java.security.SecureRandom;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/customer")
@@ -22,6 +29,17 @@ public class CustomerController {
 
     @Autowired
     private JWTUtil jwtUtil;
+
+    @Autowired
+    private SecureRandom secureRandom;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    private HashMap<String, String> emailPwdResetCodeMap = new HashMap();
 
     @PostMapping("/register")
     public Integer register(@RequestBody CustomerRegisterInDTO customerRegisterInDTO){

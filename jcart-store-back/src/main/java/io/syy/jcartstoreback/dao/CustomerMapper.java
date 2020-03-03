@@ -2,7 +2,9 @@ package io.syy.jcartstoreback.dao;
 
 import io.syy.jcartstoreback.po.Customer;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer customerId);
 
