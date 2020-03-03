@@ -58,4 +58,12 @@ public class CustomerServiceImpl implements CustomerService {
     public void update(Customer customer) {
         customerMapper.updateByPrimaryKeySelective(customer);
     }
+
+    @Override
+    public Customer getByEmail(String email) {
+        Customer customer = customerMapper.selectByEmail(email);
+        return customer;
+    }
+
+
 }
