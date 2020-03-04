@@ -13,12 +13,12 @@ var app = new Vue({
         quantity: 1,
         myShoppingCart: []
     },
-    computed:{
-        otherPicUrlsJson(){
+    computed: {
+        otherPicUrlsJson() {
             return this.otherPicUrls.toString();
         }
     },
-    mounted(){
+    mounted() {
         console.log('view mounted');
 
         var myShoppingCartJson = localStorage['myShoppingCartJson'];
@@ -32,10 +32,13 @@ var app = new Vue({
         }
 
         this.getProductById();
+
+
     },
     methods: {
-        handleAddToCartClick(){
+        handleAddToCartClick() {
             console.log('add to cart click');
+
             var myShoppingCartJson = localStorage['myShoppingCartJson'];
             this.myShoppingCart = myShoppingCartJson ? JSON.parse(myShoppingCartJson) : [];
 
@@ -52,6 +55,7 @@ var app = new Vue({
                     productName: this.productName,
                     mainPicUrl: this.mainPicUrl,
                     unitPrice: this.price,
+                    discount: this.discount,
                     quantity: this.quantity
                 };
                 this.myShoppingCart.push(cartProduct);
