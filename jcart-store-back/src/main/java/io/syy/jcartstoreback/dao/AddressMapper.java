@@ -2,9 +2,10 @@ package io.syy.jcartstoreback.dao;
 
 import io.syy.jcartstoreback.po.Address;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
-
+@CrossOrigin
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer addressId);
 
