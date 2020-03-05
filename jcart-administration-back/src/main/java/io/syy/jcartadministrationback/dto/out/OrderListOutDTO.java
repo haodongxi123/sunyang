@@ -1,21 +1,22 @@
 package io.syy.jcartadministrationback.dto.out;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Date;
+
 public class OrderListOutDTO {
-    private  Long orderId;
-    private  Integer customerId;
-    private  String customerName;
-    private  Byte status;
-    private  Double totalPirce;
-    private  Long createTimestamp;
-    private  Long updatatimestamp;
+    private Long orderId;
+    private Integer customerId;
+    private String customerName;
+    private Byte status;
+    private Double totalPrice;
+    @JsonIgnore
+    private Date createTime;
+    private Long createTimestamp;
+    @JsonIgnore
+    private Date updateTime;
+    private Long updateTimestamp;
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -33,6 +34,14 @@ public class OrderListOutDTO {
         this.customerName = customerName;
     }
 
+    public Long getCreateTimestamp() {
+        return this.createTime == null ? null : this.createTime.getTime();
+    }
+
+    public Long getUpdateTimestamp() {
+        return this.updateTime == null ? null : this.updateTime.getTime();
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -41,27 +50,35 @@ public class OrderListOutDTO {
         this.status = status;
     }
 
-    public Double getTotalPirce() {
-        return totalPirce;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setTotalPirce(Double totalPirce) {
-        this.totalPirce = totalPirce;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Long getCreateTimestamp() {
-        return createTimestamp;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateTimestamp(Long createTimestamp) {
-        this.createTimestamp = createTimestamp;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Long getUpdatatimestamp() {
-        return updatatimestamp;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatatimestamp(Long updatatimestamp) {
-        this.updatatimestamp = updatatimestamp;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
