@@ -1,5 +1,7 @@
 package io.syy.jcartstoreback.dto.out;
 
+import io.syy.jcartstoreback.vo.OrderProductVO;
+
 import java.util.List;
 
 public class OrderShowOutDTO {
@@ -127,7 +129,7 @@ public class OrderShowOutDTO {
         return orderProducts;
     }
 
-    public void setOrderProducts(List<OrderProductOutDTO> orderProducts) {
+    public void setOrderProducts(List<OrderProductVO> orderProducts) {
         this.orderProducts = orderProducts;
     }
 
