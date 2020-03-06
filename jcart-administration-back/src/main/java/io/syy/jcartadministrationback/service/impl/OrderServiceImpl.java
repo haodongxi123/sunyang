@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import io.syy.jcartadministrationback.dao.OrderDetailMapper;
 import io.syy.jcartadministrationback.dao.OrderMapper;
 import io.syy.jcartadministrationback.dto.out.OrderListOutDTO;
+import io.syy.jcartadministrationback.dto.out.OrderShowOutDTO;
 import io.syy.jcartadministrationback.dto.out.PageOutDTO;
 import io.syy.jcartadministrationback.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,11 @@ public class OrderServiceImpl implements OrderService {
 
 
         return page;
+    }
+
+    @Override
+    public OrderShowOutDTO getById(Long orderId) {
+
+        return null;
     }
 }
