@@ -1,7 +1,10 @@
 package io.syy.jcartadministrationback.dao;
 
 import io.syy.jcartadministrationback.po.Address;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AddressMapper {
@@ -16,4 +19,6 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> selectByCustomerId(@Param("customerId") Integer customerId);
 }
