@@ -32,8 +32,7 @@ public class ReturnController {
 
     @PostMapping("/apply")
     public Integer apply(@RequestBody ReturnApplyInDTO returnApplyInDTO,
-                         @RequestAttribute Integer customerId){
-
+                         @RequestAttribute Integer customerId) {
         Return aReturn = new Return();
         aReturn.setOrderId(returnApplyInDTO.getOrderId());
         aReturn.setOrderTime(new Date(returnApplyInDTO.getOrderTimestamp()));
@@ -48,11 +47,12 @@ public class ReturnController {
         aReturn.setReason(returnApplyInDTO.getReason());
         aReturn.setOpened(returnApplyInDTO.getOpened());
         aReturn.setComment(returnApplyInDTO.getComment());
-            Date now = new Date();
+        Date now = new Date();
         aReturn.setCreateTime(now);
         aReturn.setUpdateTime(now);
         returnService.create(aReturn);
         Integer returnId = aReturn.getReturnId();
+
         return returnId;
     }
 
