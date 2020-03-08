@@ -1,7 +1,11 @@
 package io.syy.jcartadministrationback.dao;
 
+import com.github.pagehelper.Page;
 import io.syy.jcartadministrationback.po.Return;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@Repository
 public interface ReturnMapper {
     int deleteByPrimaryKey(Integer returnId);
 
@@ -14,4 +18,7 @@ public interface ReturnMapper {
     int updateByPrimaryKeySelective(Return record);
 
     int updateByPrimaryKey(Return record);
+
+
+    Page<Return> search();
 }

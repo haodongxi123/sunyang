@@ -1,10 +1,10 @@
 package io.syy.jcartadministrationback.dto.in;
 
 public class ReturnHistoryCreateInDTO {
-    private  Integer returnId;
-    private  Byte returnStatus;
-    private  Boolean customerNotifeid;
-    private  String comment;
+    private Integer returnId;
+    private Byte returnStatus;
+    private Boolean customerNotified;
+    private String comment;
 
     public Integer getReturnId() {
         return returnId;
@@ -22,12 +22,12 @@ public class ReturnHistoryCreateInDTO {
         this.returnStatus = returnStatus;
     }
 
-    public Boolean getCustomerNotifeid() {
-        return customerNotifeid;
+    public Boolean getCustomerNotified() {
+        return customerNotified;
     }
 
-    public void setCustomerNotifeid(Boolean customerNotifeid) {
-        this.customerNotifeid = customerNotifeid;
+    public void setCustomerNotified(Boolean customerNotified) {
+        this.customerNotified = customerNotified;
     }
 
     public String getComment() {
